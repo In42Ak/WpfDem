@@ -1,0 +1,74 @@
+CREATE TABLE [Category] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [Unit] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [Provider] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [Producer] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [Status] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [PickPoint] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Address NVARCHAR(300)
+)
+
+CREATE TABLE [Role] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100)
+)
+
+CREATE TABLE [Users] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    RoleId INT FOREIGN KEY REFERENCES [Role](Id),
+    FullName NVARCHAR(200),
+    Login NVARCHAR(100),
+    Password NVARCHAR(100)
+)
+
+CREATE TABLE [Products] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Article NVARCHAR(50),
+    Name NVARCHAR(200),
+    UnitId INT FOREIGN KEY REFERENCES [Unit](Id),
+    Price DECIMAL(10,2),
+    ProviderId INT FOREIGN KEY REFERENCES [Provider](Id),
+    ProducerId INT FOREIGN KEY REFERENCES [Producer](Id),
+    CategoryId INT FOREIGN KEY REFERENCES [Category](Id),
+    Discount DECIMAL(5,2),
+    StockQuantity DECIMAL(10,2),
+    Description NVARCHAR(MAX),
+    Photo NVARCHAR(200)
+)
+
+CREATE TABLE [Orders] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    OrderDate DATE,
+    OrderDelivery DATE,
+    PickUpPointId INT FOREIGN KEY REFERENCES [PickPoint](Id),
+    UserId INT FOREIGN KEY REFERENCES [Users](Id),
+    Code NVARCHAR(50),
+    StatusId INT FOREIGN KEY REFERENCES [Status](Id)
+)
+
+CREATE TABLE [ProductInOrder] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    OrderId INT FOREIGN KEY REFERENCES [Orders](Id),
+    ProductId INT FOREIGN KEY REFERENCES [Products](Id),
+    Amount INT
+)

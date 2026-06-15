@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfDem.AddEditOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDem"
+        mc:Ignorable="d"
+        Title="Редактирование заказа" Height="450" Width="800"
+        Background="White"
+        Icon="/Res/Icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Res/Icon.png" Height="60" Margin="20 10"
+                   Stretch="Uniform" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Text="Редактирование заказа"
+                       VerticalAlignment="Center" Margin="20 0" FontWeight="Bold"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="20 10">
+                <TextBlock Text="Дата заказа"/>
+                <DatePicker x:Name="OrderDate"/>
+                <TextBlock Text="Дата доставки" Margin="0 10 0 0"/>
+                <DatePicker x:Name="OrderDelivery"/>
+                <TextBlock Text="Код заказа" Margin="0 10 0 0"/>
+                <TextBox x:Name="OrderCode"/>
+                <TextBlock Text="Пункт выдачи" Margin="0 10 0 0"/>
+                <ComboBox Name="OrderPickPoint"/>
+                <TextBlock Text="Статус" Margin="0 10 0 0"/>
+                <ComboBox Name="OrderStatus"/>
+                <TextBlock Text="Пользователь" Margin="0 10 0 0"/>
+                <ComboBox Name="OrderUser"/>
+                <TextBlock Text="Товары" Margin="0 10 0 0"/>
+                <ComboBox Name="OrderProduct"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="CancelButton" Content="Отменить" Grid.Column="0"
+                    VerticalAlignment="Center" Margin="20 0" Click="CancelButton_Click"/>
+            <Button Name="DeleteButton" Content="Удалить" Grid.Column="2" Visibility="Collapsed"
+                    VerticalAlignment="Center" Margin="10 0" Click="DeleteButton_Click"/>
+            <Button Name="SaveButton" Content="Сохранить" Grid.Column="3"
+                    VerticalAlignment="Center" Margin="20 0" Click="SaveButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

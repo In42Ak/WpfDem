@@ -1,0 +1,72 @@
+﻿<Window x:Class="WpfDem.AddEditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDem"
+        mc:Ignorable="d"
+        Title="Редактирование и добавление товара" Height="450" Width="800"
+        Background="White"
+        Icon="/Res/Icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Res/Icon.png" Height="60" Margin="20 10"
+                   Stretch="Uniform" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Text="Редактирование и добавление товара"
+                       VerticalAlignment="Center" Margin="20 0" FontWeight="Bold"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="20 10">
+                <TextBlock Text="Артикул"/>
+                <TextBox x:Name="ProductArticle" MaxLength="50"/>
+                <TextBlock Text="Наименование" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductName"/>
+                <TextBlock Text="Единица измерения" Margin="0 10 0 0"/>
+                <ComboBox Name="ProductUnit"/>
+                <TextBlock Text="Цена" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductCost"/>
+                <TextBlock Text="Производитель" Margin="0 10 0 0"/>
+                <ComboBox Name="ProductProducer"/>
+                <TextBlock Text="Поставщик" Margin="0 10 0 0"/>
+                <ComboBox Name="ProductProvider"/>
+                <TextBlock Text="Категория" Margin="0 10 0 0"/>
+                <ComboBox Name="ProductCategory"/>
+                <TextBlock Text="Скидка" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductDiscoubt"/>
+                <TextBlock Text="Остаток на складе" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductInStock"/>
+                <TextBlock Text="Описание" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductDescription" Height="150" TextWrapping="Wrap"/>
+                <TextBlock Text="Фото" Margin="0 10 0 0"/>
+                <Image Name="ProductPhotoPreview" Width="300" Height="200" Stretch="Uniform" Margin="0 5" HorizontalAlignment="Left"/>
+                <Button Name="SelectPhotoButton" Content="Выбрать фото" HorizontalAlignment="Left" Click="SelectPhotoButton_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="CancelButton" Content="Отменить" Grid.Column="0"
+                    VerticalAlignment="Center" Margin="20 0" Click="CancelButton_Click"/>
+            <Button Name="DeleteButton" Content="Удалить" Grid.Column="2" Visibility="Collapsed"
+                    VerticalAlignment="Center" Margin="10 0" Click="DeleteButton_Click"/>
+            <Button Name="SaveButton" Content="Сохранить" Grid.Column="3"
+                    VerticalAlignment="Center" Margin="20 0" Click="SaveButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

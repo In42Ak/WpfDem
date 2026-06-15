@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfDem.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDem"
+        mc:Ignorable="d"
+        Title="Заказы" Height="450" Width="800"
+        Background="White"
+        Icon="/Res/Icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Res/Icon.png" Height="60" Margin="20 10"
+                   Stretch="Uniform" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Text="Заказы"
+                       VerticalAlignment="Center" Margin="20 0" FontWeight="Bold"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl Name="OrderList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" Tag="{Binding Id}" MouseDown="Border_MouseDown"
+                                BorderBrush="Gray" BorderThickness="1" Background="White">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Article}" FontWeight="Bold"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Статус заказа: "/>
+                                        <TextBlock Text="{Binding Status.Name}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Адрес пункта выдачи: "/>
+                                        <TextBlock Text="{Binding PickPoint.Address}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Дата заказа: "/>
+                                        <TextBlock Text="{Binding OrderDate, StringFormat='{}{0:yyyy-MM-dd}'}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1"
+                                        Margin="5" VerticalAlignment="Stretch">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="Дата доставки:" HorizontalAlignment="Center" FontSize="14"/>
+                                        <TextBlock Text="{Binding OrderDelivery, StringFormat='{}{0:yyyy-MM-dd}'}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="LogoutButton" Content="Выход" Grid.Column="0"
+                    VerticalAlignment="Center" Margin="20 0" Click="LogoutButton_Click"/>
+            <Button Name="CreateButton" Content="Создать" Grid.Column="3" Visibility="Collapsed"
+                    VerticalAlignment="Center" Margin="20 0" Click="CreateButton_Click" />
+        </Grid>
+    </Grid>
+</Window>
